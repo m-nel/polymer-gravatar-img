@@ -1,0 +1,83 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../js-md5/js/md5.min.js">
+
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <gravatar-img email="someone@example.com" size="128" default-img="mm"></gravatar-img>
+
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="gravatar-img">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+    </style>
+    <img src="[[gravatarUrl]]" alt="[[altText]]">
+  </template>
+
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'gravatar-img',
+
+      properties: {
+        altText: String,
+        email: String,
+        size: {
+          type: Number,
+          value: 80
+        },
+        defaultImg: {
+          type: String,
+          value: ''
+        },
+        secure: {
+          type: Boolean,
+          value: true
+        },
+        rating: {
+          type: String,
+          value: 'g'
+        },
+        forcedefault: {
+          type: Boolean,
+          value: false
+        },
+        gravatarUrl: {
+          type: String,
+          computed: '_computeGravatarUrl(email, size, secure, defaultImg, forcedefault, rating)'
+        }
+      },
+
+      _computeGravatarUrl: function(email, size, secure, defaultImg, forcedefault, rating) {
+        var url = [
+          secure ? 'https' : 'http',
+          '://www.gravatar.com/avatar/',
+          md5(email.trim().toLowerCase()),
+          '.jpeg',
+          '?s=' + size,
+          '&d=' + encodeURIComponent(defaultImg),
+          '&r=' + rating
+        ].join('');
+
+        if (forcedefault) {
+          url += '&f=y';
+        }
+
+        return url;
+      }
+
+    });
+  })();
+  </script>
+</dom-module>
