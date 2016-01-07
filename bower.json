@@ -1,10 +1,10 @@
 {
   "name": "gravatar-img",
-  "version": "1.0.6",
+  "version": "0.1.1",
   "authors": [
-    "Anonymous <anonymous@example.com>"
+    "Michael <michael.a.nel1@gmail.com>"
   ],
-  "description": "An element providing a solution to no problem in particular.",
+  "description": "A Polymer element to display a Gravatar image.",
   "keywords": [
     "web-component",
     "polymer",
@@ -18,7 +18,7 @@
     "/test/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.2.0",
+    "polymer": "Polymer/polymer#^1.0.0",
     "js-md5": "~2.1.0"
   },
   "devDependencies": {
